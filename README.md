@@ -2,7 +2,7 @@
 
 I'm going to build counter service with following features
 
-- [ ] HTTP endpoint response with increasing number on every call
+- [X] HTTP endpoint response with increasing number on every call
 - [ ] Tests 👻
 - [ ] JSON logging with verbosity level
 - [ ] Reset request
