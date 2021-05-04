@@ -65,4 +65,4 @@ docker_manifests:
 - name_template: ghcr.io/elmariofredo/go-count:{{ .Tag }}
   image_templates:
   - ghcr.io/elmariofredo/go-count:{{ .Tag }}-amd64
-  - ghcr.io/elmariofredo/go-count:{{ .Tag }}-arm64
+  - ghcr.io/elmariofredo/go-count:{{ .Tag }}-arm64v8
