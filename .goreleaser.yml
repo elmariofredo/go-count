@@ -30,3 +30,18 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+dockers:
+  - goos: linux
+    goarch: amd64
+    image_templates:
+    - ghcr.io/elmariofredo/go-count:{{ .Tag }}
+    dockerfile: Dockerfile
+    build_flag_templates:
+    - "--label=org.opencontainers.image.created={{.Date}}"
+    - "--label=org.opencontainers.image.title={{.ProjectName}}"
+    - "--label=org.opencontainers.image.description=GO Lang counter service"
+    - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+    - "--label=org.opencontainers.image.version={{.Version}}"
+    - "--label=org.opencontainers.image.source=https://github.com/elmariofredo/go-count"
+    - "--label=org.opencontainers.image.authors=Mario Vejlupek <mario@vejlupek.cz>,"
