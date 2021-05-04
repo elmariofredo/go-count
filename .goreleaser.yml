@@ -36,8 +36,10 @@ dockers:
     goarch: amd64
     image_templates:
     - ghcr.io/elmariofredo/go-count:{{ .Tag }}-amd64
+    use_buildx: true
     dockerfile: Dockerfile
     build_flag_templates:
+    - "--platform=linux/amd64"
     - "--label=org.opencontainers.image.created={{.Date}}"
     - "--label=org.opencontainers.image.title={{.ProjectName}}"
     - "--label=org.opencontainers.image.description=GO Lang counter service"
@@ -50,6 +52,7 @@ dockers:
     goarch: arm64
     image_templates:
     - ghcr.io/elmariofredo/go-count:{{ .Tag }}-arm64v8
+    use_buildx: true
     dockerfile: Dockerfile
     build_flag_templates:
     - "--platform=linux/arm64/v8"
