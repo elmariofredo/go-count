@@ -7,7 +7,7 @@ I'm going to build counter service with following features. Main purpose is to l
 - [X] HTTP endpoint response with increasing number on every call
 - [X] Build CI ( Inspired by https://github.com/vojtechmares/goreleaser-live/blob/master/.goreleaser.yml )
 - [ ] Tests 👻
-- [ ] Reset request
+- [X] Reset counter request
 - [ ] JSON logging with verbosity level
 - [ ] Automated deployment/rollout to Kubernetes
 - [ ] Database backend to preserve counter during restart
