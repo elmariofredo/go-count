@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-go@v2.1.3
-      - run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build ./cmd/counter 
+      - run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build ./cmd/go-count
