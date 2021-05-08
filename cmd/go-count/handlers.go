@@ -1,9 +1,10 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"strconv"
+
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -18,6 +19,11 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write([]byte("Ahoj"))
+
+	log.WithFields(log.Fields{
+		"path": r.URL.Path,
+	}).Debug("Ahoj")
+
 }
 
 func count(rw http.ResponseWriter, r *http.Request) {
@@ -30,6 +36,10 @@ func count(rw http.ResponseWriter, r *http.Request) {
 
 		rw.Write([]byte(`{"count": ` + strconv.Itoa(counter) + `}`))
 
+		log.WithFields(log.Fields{
+			"path": r.URL.Path,
+		}).Info("Rest")
+
 		return
 
 	}
@@ -38,17 +48,9 @@ func count(rw http.ResponseWriter, r *http.Request) {
 
 	rw.Write([]byte(`{"count": ` + strconv.Itoa(counter) + `}`))
 
-}
+	log.WithFields(log.Fields{
+		"path":  r.URL.Path,
+		"count": strconv.Itoa(counter),
+	}).Debug("counting")
 
-func main() {
-	println("Starting")
-
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", welcome)
-	mux.HandleFunc("/count", count)
-
-	err := http.ListenAndServe(":3000", mux)
-
-	log.Fatal(err)
 }

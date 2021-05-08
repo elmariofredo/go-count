@@ -10,7 +10,7 @@ TODO:
 - [X] Build CI ( Inspired by https://github.com/vojtechmares/goreleaser-live/blob/master/.goreleaser.yml )
 - [ ] Tests 👻
 - [X] Reset counter request
-- [ ] JSON logging with verbosity level
+- [X] JSON logging with verbosity level
 - [ ] Automated deployment/rollout to Kubernetes
 - [ ] Database backend to preserve counter during restart
 
