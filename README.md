@@ -7,7 +7,7 @@ I'm going to build counter service with following features. Main purpose is to l
 TODO:
 
 - [X] HTTP endpoint response with increasing number on every call
-- [X] Build CI ( Inspired by https://github.com/vojtechmares/goreleaser-live/blob/master/.goreleaser.yml )
+- [X] Build CI ( Inspired by [vojtechmares/goreleaser-live](https://github.com/vojtechmares/goreleaser-live/blob/master/.goreleaser.yml) )
 - [ ] Tests 👻
 - [X] Reset counter request
 - [X] JSON logging with verbosity level
@@ -17,4 +17,3 @@ TODO:
 ## Versioning
 
 I'm using André Staltz's [ComVer](https://staltz.com/i-wont-use-semver-patch-versions-anymore.html) as I prefer backward compatibility tracking over major.minor.patch decission hell.
-
