@@ -7,7 +7,11 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func initLogs() {
+var (
+	portNumber string = "3000"
+)
+
+func setup() {
 
 	if os.Getenv("LOG_FORMAT") == "json" {
 		log.SetFormatter(&log.JSONFormatter{})
@@ -21,11 +25,15 @@ func initLogs() {
 		log.SetLevel(log.InfoLevel)
 	}
 
+	if os.Getenv("PORT_NUMBER") != "" {
+		portNumber = os.Getenv("PORT_NUMBER")
+	}
+
 }
 
 func main() {
 
-	initLogs()
+	setup()
 
 	log.Info("Starting")
 
@@ -34,7 +42,7 @@ func main() {
 	mux.HandleFunc("/", welcome)
 	mux.HandleFunc("/count", count)
 
-	err := http.ListenAndServe(":3000", mux)
+	err := http.ListenAndServe(":"+portNumber, mux)
 
 	log.Fatal(err)
 }
