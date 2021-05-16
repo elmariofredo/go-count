@@ -11,10 +11,10 @@ var (
 	counter int = 0
 )
 
-func welcome(w http.ResponseWriter, r *http.Request) {
+func (app *application) welcome(w http.ResponseWriter, r *http.Request) {
 
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		app.notFound(w)
 		return
 	}
 
@@ -26,7 +26,7 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func count(rw http.ResponseWriter, r *http.Request) {
+func (app *application) count(rw http.ResponseWriter, r *http.Request) {
 
 	rw.Header().Set("Content-Type", "application/json")
 
