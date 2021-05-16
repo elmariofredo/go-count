@@ -7,10 +7,6 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var (
-	counter int = 0
-)
-
 func (app *application) welcome(w http.ResponseWriter, r *http.Request) {
 
 	if r.URL.Path != "/" {
@@ -28,11 +24,24 @@ func (app *application) welcome(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) count(rw http.ResponseWriter, r *http.Request) {
 
+	counterValue, err := app.rdb.Get(app.ctx, "counter").Result()
+	if err != nil {
+		counterValue = "0"
+	}
+
+	var counter, _ = strconv.Atoi(counterValue)
+
 	rw.Header().Set("Content-Type", "application/json")
 
 	if r.Method == http.MethodDelete {
 
-		counter = 0
+		counter := 0
+
+		setErr := app.rdb.Set(app.ctx, "counter", strconv.Itoa(counter), 0).Err()
+		if setErr != nil {
+			app.serverError(rw, setErr)
+			return
+		}
 
 		rw.Write([]byte(`{"count": ` + strconv.Itoa(counter) + `}`))
 
@@ -45,6 +54,12 @@ func (app *application) count(rw http.ResponseWriter, r *http.Request) {
 	}
 
 	counter++
+
+	setErr := app.rdb.Set(app.ctx, "counter", strconv.Itoa(counter), 0).Err()
+	if setErr != nil {
+		app.serverError(rw, setErr)
+		return
+	}
 
 	rw.Write([]byte(`{"count": ` + strconv.Itoa(counter) + `}`))
 

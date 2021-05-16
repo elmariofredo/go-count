@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
+	"runtime/debug"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -39,14 +41,15 @@ func (app *application) start() {
 
 }
 
-// func (app *application) serverError(w http.ResponseWriter, err error) {
+func (app *application) serverError(w http.ResponseWriter, err error) {
 
-// 	trace := fmt.Sprintf("%s\n%s", err.Error(), debug.Stack())
-// 	log.Fatal(trace)
+	trace := fmt.Sprintf("%s\n%s", err.Error(), debug.Stack())
 
-// 	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	log.Fatal(trace)
 
-// }
+	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+
+}
 
 func (app *application) clientError(w http.ResponseWriter, status int) {
 
