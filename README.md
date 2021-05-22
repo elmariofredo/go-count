@@ -12,7 +12,8 @@ TODO:
 - [X] Reset counter request
 - [X] JSON logging with verbosity level
 - [ ] Automated deployment/rollout to Kubernetes
-- [ ] Database backend to preserve counter during restart
+- [X] Database backend to preserve counter during restart
+- [ ] Metrics
 
 ## Versioning
 
