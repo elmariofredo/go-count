@@ -6,29 +6,41 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
+type config struct {
+	serverPortNumber string
+	serverAddress    string
+	redisPortNumber  string
+	redisHostname    string
+	redisPassword    string
+	redisDB          int
+}
+
 var (
-	portNumber string = "3000"
+	defaultConfig = &config{
+		serverPortNumber: "3000",
+		serverAddress:    "0.0.0.0",
+		redisPortNumber:  "6379",
+		redisHostname:    "localhost",
+		redisPassword:    "",
+		redisDB:          0,
+	}
 )
 
 type application struct {
-	ctx context.Context
-	rdb *redis.Client
+	ctx    context.Context
+	rdb    *redis.Client
+	config *config
 }
 
 func main() {
 
-	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-
 	app := &application{
-		ctx: context.Background(),
-		rdb: rdb,
+		config: defaultConfig,
 	}
 
 	app.setup()
+
+	app.dbConnect()
 
 	app.start()
 

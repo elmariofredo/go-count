@@ -1,11 +1,14 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"os"
 	"runtime/debug"
+	"strconv"
 
+	"github.com/go-redis/redis/v8"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -25,9 +28,33 @@ func (app *application) setup() {
 		log.SetLevel(log.InfoLevel)
 	}
 
-	if os.Getenv("PORT_NUMBER") != "" {
-		portNumber = os.Getenv("PORT_NUMBER")
+	if os.Getenv("SERVER_PORT_NUMBER") != "" {
+		app.config.serverPortNumber = os.Getenv("SERVER_PORT_NUMBER")
 	}
+	if os.Getenv("REDIS_PORT_NUMBER") != "" {
+		app.config.redisPortNumber = os.Getenv("REDIS_PORT_NUMBER")
+	}
+	if os.Getenv("REDIS_HOSTNAME") != "" {
+		app.config.redisHostname = os.Getenv("REDIS_HOSTNAME")
+	}
+	if os.Getenv("REDIS_PASSWORD") != "" {
+		app.config.redisPassword = os.Getenv("REDIS_PASSWORD")
+	}
+	if os.Getenv("REDIS_DB") != "" {
+		app.config.redisDB, _ = strconv.Atoi(os.Getenv("REDIS_DB"))
+	}
+
+}
+
+func (app *application) dbConnect() {
+
+	app.ctx = context.Background()
+
+	app.rdb = redis.NewClient(&redis.Options{
+		Addr:     app.config.redisHostname + ":" + app.config.redisPortNumber,
+		Password: app.config.redisPassword,
+		DB:       app.config.redisDB,
+	})
 
 }
 
@@ -35,7 +62,15 @@ func (app *application) start() {
 
 	log.Info("Starting")
 
-	err := http.ListenAndServe(":"+portNumber, app.routes())
+	// Valerie first code
+	VALERIEMJHYUI5RGVXS := "👩🏼‍🦰"
+	log.Info(VALERIEMJHYUI5RGVXS)
+
+	// Jasmine first code
+	J6KNMKIYTREDSW324 := "🦄"
+	log.Info(J6KNMKIYTREDSW324)
+
+	err := http.ListenAndServe(app.config.serverAddress+":"+app.config.serverPortNumber, app.routes())
 
 	log.Fatal(err)
 
