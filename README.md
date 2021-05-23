@@ -14,6 +14,7 @@ TODO:
 - [ ] Automated deployment/rollout to Kubernetes
 - [X] Database backend to preserve counter during restart
 - [ ] Metrics
+- [ ] Help flag listing vars ( https://github.com/spf13/pflag )
 
 ## Versioning
 
