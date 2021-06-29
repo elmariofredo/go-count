@@ -69,3 +69,7 @@ func (app *application) count(rw http.ResponseWriter, r *http.Request) {
 	}).Debug("counting")
 
 }
+
+func (app *application) ping(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("OK"))
+}
