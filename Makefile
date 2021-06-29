@@ -1,5 +1,5 @@
 .PHONY: test
 
 test:
-	go test ./... -coverprofile coverage.out
+	go test ./... -v -covermode=count -coverprofile coverage.out
 	go tool cover -func coverage.out
