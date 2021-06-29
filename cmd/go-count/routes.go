@@ -8,6 +8,7 @@ func (app *application) routes() *http.ServeMux {
 
 	mux.HandleFunc("/", app.welcome)
 	mux.HandleFunc("/count", app.count)
+	mux.HandleFunc("/ping", app.ping)
 
 	return mux
 }
