@@ -25,12 +25,12 @@ jobs:
     - name: Echo coverage.lcov
       run: echo "${{ steps.package.outputs.content }}"
     - name: Read coverage.out
-      id: package
+      id: package2
       uses: juliangruber/read-file-action@v1
       with:
         path: ./coverage.lcov
     - name: Echo coverage.lcov
-      run: echo "${{ steps.package.outputs.content }}"
+      run: echo "${{ steps.package2.outputs.content }}"
     - name: Coveralls
       uses: coverallsapp/github-action@v1.1.2
       with:
