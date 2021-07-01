@@ -18,6 +18,8 @@ TODO:
 - [ ] Reasonable test coverage
 - [ ] Help flag listing vars ( https://github.com/spf13/pflag )
 - [ ] Use models
+- [ ] Check conformance with https://github.com/golang-standards/project-layout
+- [ ] Add online versioned documentation e.g. https://docusaurus.io/docs
 
 ## Versioning
 
