@@ -17,7 +17,14 @@ jobs:
       run: make test
     - name: Convert coverage to lcov
       uses: jandelgado/gcov2lcov-action@v1.0.5
-    - name: Read coverage.lcov
+    - name: Read coverage.out
+      id: package
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./coverage.out
+    - name: Echo coverage.lcov
+      run: echo "${{ steps.package.outputs.content }}"
+    - name: Read coverage.out
       id: package
       uses: juliangruber/read-file-action@v1
       with:
