@@ -15,4 +15,12 @@
 # vendor/
 dist/
 
+# Exclude binary
+go-count
+
+# Include src folde which is excluded by previous statement
+!cmd/go-count
+
+# Exclude coverage files
 coverage.out
+coverage.lcov
