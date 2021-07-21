@@ -29,3 +29,15 @@ resource "digitalocean_droplet" "web" {
   region = "fra1"
   image = "ubuntu-18-04-x64"
 }
+resource "digitalocean_droplet" "ams3" {
+  name = "test"
+  size = "s-1vcpu-2gb"
+  region = "ams3"
+  image = "ubuntu-18-04-x64"
+}
+resource "digitalocean_droplet" "lon1" {
+  name = "test"
+  size = "s-1vcpu-2gb"
+  region = "lon1"
+  image = "ubuntu-18-04-x64"
+}
