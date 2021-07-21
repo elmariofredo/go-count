@@ -15,6 +15,9 @@
 # vendor/
 dist/
 
+# Tmp
+tmp/
+
 # Exclude binary
 go-count
 
@@ -24,3 +27,6 @@ go-count
 # Exclude coverage files
 coverage.out
 coverage.lcov
+
+# Terraform
+.terraform
