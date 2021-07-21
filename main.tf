@@ -22,26 +22,3 @@ variable "do_token" {}
 provider "digitalocean" {
   token = var.do_token
 }
-
-
-resource "digitalocean_droplet" "web" {
-  name = "test"
-  size = "s-1vcpu-2gb"
-  region = "fra1"
-  image = "ubuntu-18-04-x64"
-  ssh_keys = ["30862134"]
-}
-resource "digitalocean_droplet" "ams3" {
-  name = "test"
-  size = "s-1vcpu-2gb"
-  region = "ams3"
-  image = "ubuntu-18-04-x64"
-  ssh_keys = ["30862134"]
-}
-resource "digitalocean_droplet" "lon1" {
-  name = "test"
-  size = "s-1vcpu-2gb"
-  region = "lon1"
-  image = "ubuntu-18-04-x64"
-  ssh_keys = ["30862134"]
-}
