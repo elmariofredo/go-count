@@ -22,3 +22,16 @@ variable "do_token" {}
 provider "digitalocean" {
   token = var.do_token
 }
+
+resource "digitalocean_kubernetes_cluster" "test" {
+  name = "test"
+  region = "ams1"
+  version = "1.21.2-do.2"
+
+  node_pool {
+    name = "default"
+    size = "s-1vcpu-2gb"
+    node_count = 1
+  }
+
+}
