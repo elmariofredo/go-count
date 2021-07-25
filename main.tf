@@ -25,7 +25,7 @@ provider "digitalocean" {
 
 resource "digitalocean_kubernetes_cluster" "test" {
   name = "test"
-  region = "ams1"
+  region = "ams3"
   version = "1.21.2-do.2"
 
   node_pool {
