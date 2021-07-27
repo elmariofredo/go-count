@@ -30,3 +30,4 @@ coverage.lcov
 
 # Terraform
 .terraform
+*.tfstate*
